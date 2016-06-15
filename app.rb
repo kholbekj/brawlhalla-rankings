@@ -39,6 +39,7 @@ end
 # /search/2000-2050
 #
 get "/search/:query" do
+  response.headers["Access-Control-Allow-Headers"] = "*"
   query = params[:query]
   if query =~ /\d+?-\d+?/ # Match format number, dash, number
     low, high = query.split('-').map(&:to_i)
