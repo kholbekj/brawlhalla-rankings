@@ -17,7 +17,7 @@ task :scrape do
   progressbar = ProgressBar.create(title: 'Pages processed', total: PAGE_COUNT, format: "%a %e %P% Processed: %c of %C")
 
   # For every single page
-  (1..2).each do |p|
+  (1..PAGE_COUNT).each do |p|
 
     # Make the full url of the page
     url = base_page + p.to_s
