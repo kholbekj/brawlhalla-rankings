@@ -8,7 +8,7 @@ require_relative 'shared'
 task :scrape do
   # Base url to scrape
   base_page = 'http://www.brawlhalla.com/rankings/2v2/'
-  # Found with a binary search, should be dynamic instead.
+  # Found with a binary search, should be dynamic instead. Kept for now for progressbar.
   PAGE_COUNT = 6424
   @teams = []
 
@@ -44,6 +44,7 @@ task :scrape do
     progressbar.increment
   end
 
+  # Cache the info across sessions and restarts
   Cache.store_teams(@teams)
   puts "Done!"
 end

@@ -15,19 +15,29 @@ def search(first, second=first)
   end
 end
 
+# Just a status indicator, show number of cached teams
 get "/" do
   JSON.generate({ team_count: teams.length})
 end
 
+# Search endpoint. Can either find by partial name match, elo, or elo-range.
+# Case-insensitive.
+#
+# Examples:
+#
+# /search/dobrein
+# /search/1337
+# /search/2000-2050
+#
 get "/search/:query" do
   query = params[:query]
-  if query =~ /\d+?-\d+?/
+  if query =~ /\d+?-\d+?/ # Match format number, dash, number
     low, high = query.split('-').map(&:to_i)
     JSON.generate(search(low, high))
-  elsif query.to_i.to_s == query
+  elsif query.to_i.to_s == query # Matches a number
     elo = query.to_i
     JSON.generate(search(elo))
-  else
+  else # There's something else, we assume it's a name
     name = query
     JSON.generate(search(name))
   end
