@@ -1,12 +1,9 @@
 require 'json'
 require 'sinatra'
-require 'memcachier'
-require 'dalli'
-
-set :cache, Dalli::Client.new
+require_relative 'shared'
 
 def teams
-  @teams ||= settings.cache.fetch("teams")
+  @teams ||= Cache.get_teams
   @teams || []
 end
 

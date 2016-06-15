@@ -3,8 +3,7 @@ require 'nokogiri'
 require 'pry'
 require 'ruby-progressbar'
 require 'json'
-require 'memcachier'
-require 'dalli'
+require_relative 'shared'
 
 task :scrape do
   # Base url to scrape
@@ -17,7 +16,7 @@ task :scrape do
   progressbar = ProgressBar.create(title: 'Pages processed', total: PAGE_COUNT, format: "%a %e %P% Processed: %c of %C")
 
   # For every single page
-  (1..PAGE_COUNT).each do |p|
+  (1..100).each do |p|
 
     # Make the full url of the page
     url = base_page + p.to_s
@@ -45,7 +44,6 @@ task :scrape do
     progressbar.increment
   end
 
-  c = Dalli::Client.new
-  c.set('teams', @teams)
+  Cache.store_teams(@teams)
   puts "Done!"
 end
