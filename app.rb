@@ -23,14 +23,15 @@ get "/" do
 end
 
 get "/search/:query" do
-  if params[:query] =~ /\d+?-\d+?/
+  query = params[:query]
+  if query =~ /\d+?-\d+?/
     low, high = query.split('-').map(&:to_i)
     JSON.generate(search(low, high))
-  elsif params[:query].to_i.to_s == params[:query]
-    elo = params[:query].to_i
+  elsif query.to_i.to_s == query
+    elo = query.to_i
     JSON.generate(search(elo))
   else
-    name = params[:query]
+    name = query
     JSON.generate(search(name))
   end
 end
