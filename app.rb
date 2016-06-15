@@ -20,6 +20,7 @@ options "*" do
 
   # Needed for AngularJS
   response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
+  response.headers["Access-Control-Allow-Origin"] = "*"
 
   halt HTTP_STATUS_OK
 end
@@ -39,7 +40,7 @@ end
 # /search/2000-2050
 #
 get "/search/:query" do
-  response.headers["Access-Control-Allow-Headers"] = "*"
+  response.headers["Access-Control-Allow-Origin"] = "*"
   query = params[:query]
   if query =~ /\d+?-\d+?/ # Match format number, dash, number
     low, high = query.split('-').map(&:to_i)
