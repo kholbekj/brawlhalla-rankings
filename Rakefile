@@ -1,4 +1,4 @@
-require 'HTTParty'
+require 'httparty'
 require 'Nokogiri'
 require 'Pry'
 require 'ruby-progressbar'
