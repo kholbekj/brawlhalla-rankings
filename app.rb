@@ -24,12 +24,12 @@ end
 get "/search/:query" do
   if params[:query] =~ /\d+?-\d+?/
     low, high = query.split('-').map(&:to_i)
-    search(low, high).to_json
+    JSON.generate(search(low, high))
   elsif params[:query].to_i.to_s == params[:query]
     elo = params[:query].to_i
-    search(elo).to_json
+    JSON.generate(search(elo))
   else
     name = params[:query]
-    search(name).to_json
+    JSON.generate(search(name))
   end
 end
