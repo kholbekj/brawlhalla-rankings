@@ -15,6 +15,15 @@ def search(first, second=first)
   end
 end
 
+options "*" do
+  response.headers["Allow"] = "HEAD,GET,PUT,DELETE,OPTIONS"
+
+  # Needed for AngularJS
+  response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
+
+  halt HTTP_STATUS_OK
+end
+
 # Just a status indicator, show number of cached teams
 get "/" do
   JSON.generate({ team_count: teams.length})
