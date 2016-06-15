@@ -23,6 +23,7 @@ GEM
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
+    rake (11.1.2)
     ruby-progressbar (1.8.1)
     sinatra (1.4.7)
       rack (~> 1.5)
@@ -42,6 +43,7 @@ DEPENDENCIES
   nokogiri
   pry
   puma
+  rake
   ruby-progressbar
   sinatra
 
