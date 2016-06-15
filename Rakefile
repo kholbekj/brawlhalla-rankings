@@ -1,8 +1,8 @@
 require 'httparty'
-require 'Nokogiri'
-require 'Pry'
+require 'nokogiri'
+require 'pry'
 require 'ruby-progressbar'
-require 'JSON'
+require 'json'
 require 'memcachier'
 
 task scrape: :environment do
