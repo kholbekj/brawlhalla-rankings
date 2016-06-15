@@ -37,6 +37,7 @@ PLATFORMS
 DEPENDENCIES
   dalli
   httparty
+  json
   memcachier
   nokogiri
   pry
