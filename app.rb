@@ -14,12 +14,12 @@ def search(first, second=first)
   if first.is_a? Fixnum
     teams.select {|t| (first..second).include? t['elo'] }
   else
-    teams.select {|t| t['player_1'].include?(first) || t['player_2'].include?(first) }
+    teams.select {|t| t['player_1'].downcase.include?(first.downcase) || t['player_2'].downcase.include?(first.downcase) }
   end
 end
 
 get "/" do
-  teams.length.to_s
+  JSON.generate({ team_count: teams.length})
 end
 
 get "/search/:query" do
