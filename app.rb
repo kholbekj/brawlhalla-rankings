@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'memcachier'
 require 'dalli'
-require 'JSON'
+require 'json'
 
 set :cache, Dalli::Client.new
 
