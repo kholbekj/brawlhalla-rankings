@@ -11,9 +11,9 @@ end
 
 def search(first, second=first)
   if first.is_a? Fixnum
-    @teams.select {|t| (first..second).include? t['elo'] }
+    teams.select {|t| (first..second).include? t['elo'] }
   else
-    @teams.select {|t| t['player_1'].include?(first) || t['player_2'].include?(first) }
+    teams.select {|t| t['player_1'].include?(first) || t['player_2'].include?(first) }
   end
 end
 
