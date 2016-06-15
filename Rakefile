@@ -5,7 +5,7 @@ require 'ruby-progressbar'
 require 'JSON'
 require 'memcachier'
 
-task :scrape do
+task scrape: :environment do
   # Base url to scrape
   base_page = 'http://www.brawlhalla.com/rankings/2v2/'
   # Found with a binary search, should be dynamic instead.
