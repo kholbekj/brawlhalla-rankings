@@ -30,7 +30,7 @@ class Cache
   # Fetch and concatenate sharded object
   def self.get_teams
     (0..99).flat_map do |index|
-      @cache_client.get("teams-#{index}").reject(&:nil)
+      @cache_client.get("teams-#{index}").reject(&:nil?)
     end
   end
 end
