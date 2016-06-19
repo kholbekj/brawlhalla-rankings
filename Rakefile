@@ -20,7 +20,7 @@ task :scrape do
   # Base url to scrape
   base_page = 'http://www.brawlhalla.com/rankings/2v2/'
   # Found with a binary search, should be dynamic instead. Kept for now for progressbar.
-  PAGE_COUNT = 20
+  PAGE_COUNT = 6424
   @teams = []
 
   # Some feedback is nice when processing 6k pages
