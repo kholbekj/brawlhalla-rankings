@@ -1,17 +1,16 @@
 require 'json'
 require 'sinatra'
-require_relative 'shared'
-
-def teams
-  @teams ||= Cache.get_teams
-  @teams || []
-end
+require "sinatra/activerecord"
+require 'pg'
+require_relative 'models/team'
+require_relative 'models/player'
+require 'pry'
 
 def search(first, second=first)
   if first.is_a? Fixnum
-    teams.select {|t| (first..second).include? t['elo'] }
+    Team.where(elo: (first..second)).to_a.map(&:to_hash)
   else
-    teams.select {|t| t['player_1'].downcase.include?(first.downcase) || t['player_2'].downcase.include?(first.downcase) }
+    Player.where("name ILIKE ?", "%#{first}%").flat_map(&:teams).map(&:to_hash)
   end
 end
 
@@ -27,7 +26,7 @@ end
 
 # Just a status indicator, show number of cached teams
 get "/" do
-  JSON.generate({ team_count: teams.length})
+  JSON.generate({ team_count: Team.count })
 end
 
 # Search endpoint. Can either find by partial name match, elo, or elo-range.
